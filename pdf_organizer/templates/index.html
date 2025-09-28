@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Automatic PDF Merger / Organizer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #f9f9f9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 30px;
+    }
+
+    h2 {
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      border-radius: 12px;
+      box-shadow: 0px 2px 8px rgba(0,0,0,0.08);
+      margin-bottom: 25px;
+    }
+
+    .card-body h5 {
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    #filesList .list-group-item {
+      border: 1px solid #e2e2e2;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      padding: 10px 15px;
+      transition: background 0.2s;
+    }
+
+    #filesList .list-group-item:hover {
+      background: #f1faff;
+    }
+
+    .file-row strong {
+      font-size: 16px;
+    }
+
+    .file-actions button, 
+    .file-actions a {
+      font-size: 13px;
+      padding: 5px 10px;
+      border-radius: 6px;
+    }
+
+    .btn-primary {
+      background-color: #0d6efd;
+      border: none;
+    }
+    .btn-primary:hover {
+      background-color: #0b5ed7;
+    }
+
+    .btn-success {
+      background-color: #198754;
+      border: none;
+    }
+    .btn-success:hover {
+      background-color: #157347;
+    }
+
+    #mergeName {
+      max-width: 250px;
+    }
+
+    #logArea {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      border-radius: 8px;
+      font-family: monospace;
+      padding: 10px;
+    }
+
+    .small-muted {
+      font-size: 0.85rem;
+      color: #6c757d;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #777;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>📄 Automatic PDF Merger / Organizer</h2>
+
+    <!-- Upload Section -->
+    <div class="card">
+      <div class="card-body">
+        <h5>Upload PDFs</h5>
+        <input id="fileInput" type="file" multiple accept=".pdf" class="form-control mb-3">
+        <button id="uploadBtn" class="btn btn-primary">Upload Selected Files</button>
+      </div>
+    </div>
+
+    <!-- Files List Section -->
+    <div class="card">
+      <div class="card-body">
+        <h5>Uploaded Files</h5>
+        <div id="filesList" class="list-group"></div>
+        <div class="mt-3 d-flex align-items-center">
+          <button id="mergeBtn" class="btn btn-success">Merge Selected</button>
+          <input id="mergeName" class="form-control ms-3" placeholder="merged.pdf">
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Organize Section -->
+    <div class="card">
+      <div class="card-body">
+        <h5>Organize PDFs</h5>
+        <label class="form-label">Keyword Mapping (JSON)</label>
+        <textarea id="keywordMap" class="form-control mb-2" rows="3">
+{"invoice":"Invoices","report":"Reports","assignment":"Assignments"}
+        </textarea>
+        <small class="small-muted">Example: {"invoice":"Invoices","report":"Reports"}</small>
+        <div class="mt-3">
+          <button id="organizeKeyword" class="btn btn-primary">Organize by Keyword</button>
+          <button id="organizeYear" class="btn btn-secondary ms-2">Organize by Year</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Logs Section -->
+    <div class="card">
+      <div class="card-body">
+        <h5>Logs / Status</h5>
+        <pre id="logArea" style="height:200px; overflow:auto;"></pre>
+      </div>
+    </div>
+
+    <footer>© 2025 PDF Merger & Organizer | Built with Flask & JavaScript</footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
